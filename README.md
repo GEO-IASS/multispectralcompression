@@ -10,8 +10,8 @@ These are brainstorming notes for requirements for an image format for lossless 
 
 ### Other potential use cases
 * Compressing remote sensing data before transmission
-* Archiving medical imagery
-* Archiving scientific imagery
+* Archiving, viewing and processing medical imagery
+* Archiving, viewing and processing scientific imagery
 
 ## Requirements
 
@@ -27,16 +27,22 @@ These are brainstorming notes for requirements for an image format for lossless 
 * interlacing support (like Adam7) AND/OR pyramid support (for fast viewing at lower resolutions)
 
 ### General requirements
+* has to be "free"
+  * not patent encumbered
+  * OSI approved open source license
 * has to be "simple"
   * means "design the algorithm and the implementation such that as little as possible documentation is needed to fully document the algorithm and the implementation", also, "if it is fundamentally hard to explain it's not simple"
   * implies making elegant choices and writing clean code.
 * has to be "well documented"
   * means "not lacking any vital documentation"
   * implies documented code for the reference implementation
+* has to be reliable
+  * needs complete test suite
+  * needs real world testing
 
 
 ### Desired features
-* support for a "no data" value (equivalent to an alpha channel with full transparency, but maybe enbeddable in the data itself
+* support for a "no data" value (equivalent to an alpha channel with full transparency, but maybe embeddable in the data itself
 * support for different resolutions for different channels (hard!)
 * support for different bit dephts for different channels (hard?)
 * support for metadata for individual channels (bit depth, type of data)
@@ -47,8 +53,13 @@ These are brainstorming notes for requirements for an image format for lossless 
 * no intrinsic limits on number of bands
 * compression at least in the same ballpark as JPEG2000 and hopefully [FLIF](https://github.com/FLIF-hub/FLIF)
 * support for lossy compression without generation loss (as in [FLIF](https://github.com/FLIF-hub/FLIF))
-* implementation of the "time" dimension (film, but with time tagged frames)
+* implementation of the "time" dimension (animation/movie, but with time tagged frames)
   * seek to time
   * intra frames compression
   * hyperspectral video
+* maybe use an open container like [Matroska](https://github.com/Matroska-Org/libmatroska) and take advantage of the metadata infrastructure.
 
+
+--
+### Random notes
+* take a look into video codecs. will not meed all requirements but may provide insights into compressing hyperspectral images (original idea sprouted from [a discussion in the FLIF repository](https://github.com/FLIF-hub/FLIF/issues/312), Jon suggested using an animation to encode multiple bands, I wonder why not use a video codec then?)
