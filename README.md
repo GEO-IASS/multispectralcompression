@@ -31,7 +31,7 @@ These are brainstorming notes for requirements for an image format for lossless 
   * not patent encumbered
   * OSI approved open source license
 * has to be "simple"
-  * means "design the algorithm and the implementation such that as little as possible documentation is needed to fully document the algorithm and the implementation", also, "if it is fundamentally hard to explain it's not simple"
+  * means "design the algorithm and the implementation such that as little as possible documentation is needed to fully document the algorithm and the implementation", in other words, "if it is fundamentally hard to explain it's not simple"
   * implies making elegant choices and writing clean code.
 * has to be "well documented"
   * means "not lacking any vital documentation"
@@ -44,7 +44,7 @@ These are brainstorming notes for requirements for an image format for lossless 
 ### Desired features
 * support for a "no data" value (equivalent to an alpha channel with full transparency, but maybe embeddable in the data itself
 * support for different resolutions for different channels (hard!)
-* support for different bit dephts for different channels (hard?)
+* support for different bit dephts for different channels (hard)
 * support for metadata for individual channels (bit depth, type of data)
 * custom metadata
   * meta metadata - an embedded documentation of the custom metadata (no more undocumented "vendor tags")
@@ -57,9 +57,14 @@ These are brainstorming notes for requirements for an image format for lossless 
   * seek to time
   * intra frames compression
   * hyperspectral video
-* maybe use an open container like [Matroska](https://github.com/Matroska-Org/libmatroska) and take advantage of the metadata infrastructure.
+* use an open container like [Matroska](https://github.com/Matroska-Org/libmatroska) or RIFF (like [webp](https://developers.google.com/speed/webp/docs/riff_container)) and take advantage of the metadata infrastructure.
 
 
 --
 ### Random notes
 * take a look into video codecs. will not meed all requirements but may provide insights into compressing hyperspectral images (original idea sprouted from [a discussion in the FLIF repository](https://github.com/FLIF-hub/FLIF/issues/312), Jon suggested using an animation to encode multiple bands, I wonder why not use a video codec then?)
+* take a look into other image formats
+  * jpeg2000 has great implementations, but is not free
+  * FLIF supports only three spectral channels plus an alpha channel (RGBA)
+  * WebP also supports only RGBA
+  * Geotiff has poor compression (check again, maybe it has other options).
