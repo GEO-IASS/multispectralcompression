@@ -1,6 +1,7 @@
 # Multispectral and hyperspectral imagery compression
 
 These are brainstorming notes for requirements for an image format for lossless compression of multispectral and hyperspectral images.
+See [references.md](references.md) for a list of articles and sample data.
 
 ## Use cases
 * Archiving satellite imagery
@@ -36,12 +37,15 @@ These are brainstorming notes for requirements for an image format for lossless 
 * has to be "well documented"
   * means "not lacking any vital documentation"
   * implies documented code for the reference implementation
-* has to be reliable
-  * needs complete test suite
+* has to be "reliable"
+  * needs complete test suite including fuzzying
   * needs real world testing
 
 
 ### Desired features
+* reuse open formats and standards as much as possible.
+  * do not reinvent the wheel where a good solution already exists.
+* use an open container like [Matroska](https://github.com/Matroska-Org/libmatroska) or RIFF (like [webp](https://developers.google.com/speed/webp/docs/riff_container)) and take advantage of the metadata infrastructure that those containers provide.
 * support for a "no data" value (equivalent to an alpha channel with full transparency, but maybe embeddable in the data itself
 * support for different resolutions for different channels (hard!)
 * support for different bit dephts for different channels (hard)
@@ -57,10 +61,9 @@ These are brainstorming notes for requirements for an image format for lossless 
   * seek to time
   * intra frames compression
   * hyperspectral video
-* use an open container like [Matroska](https://github.com/Matroska-Org/libmatroska) or RIFF (like [webp](https://developers.google.com/speed/webp/docs/riff_container)) and take advantage of the metadata infrastructure.
 
 
---
+
 ### Random notes
 * take a look into video codecs. will not meed all requirements but may provide insights into compressing hyperspectral images (original idea sprouted from [a discussion in the FLIF repository](https://github.com/FLIF-hub/FLIF/issues/312), Jon suggested using an animation to encode multiple bands, I wonder why not use a video codec then?)
 * take a look into other image formats
